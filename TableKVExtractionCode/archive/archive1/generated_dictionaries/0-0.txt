@@ -1,0 +1,1 @@
+document_image_path:::generated_documents/         0.jpg:::length:::1:::min temperature:::10
