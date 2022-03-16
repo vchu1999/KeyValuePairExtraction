@@ -3,7 +3,7 @@ import numpy as np
 import pytesseract
 import torch
 import Levenshtein
-from TableKVExtractionCode import utils
+import utils
 
 
 def table_to_vectors(table, neighbors, image_path, document, embeddings_dict, unknown_vec, pre_jpg=False):
@@ -107,7 +107,7 @@ def table_to_vectors(table, neighbors, image_path, document, embeddings_dict, un
     return vectors, associations, key_or_value, parsed_strings, right, down
 
 
-def parse_string(image, document, path_to_tesseract, threshold=0.5):
+def parse_string(image, document, path_to_tesseract='path to pytesseract', threshold=0.5):
     """
     Extract string from image
     Turns the OCR output to nearest valid word in the input document

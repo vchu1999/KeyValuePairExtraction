@@ -83,7 +83,7 @@ def get_box_images(img, boxes):
     return images
 
 
-def get_horizontal_lines(img):
+def get_horizontal_lines(img, thickness=100, threshold = 0):
     """
     Finds most prominent horizontal lines
     @param img: input image
@@ -92,16 +92,16 @@ def get_horizontal_lines(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # remove noise
-    thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+    thresh = cv2.threshold(gray, threshold, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
 
     # The kernel size affects the minimum thickness a line should have to be detected.
-    horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (100, 1))
+    horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (thickness, 1))
     detect_horizontal = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, horizontal_kernel, iterations=2)
 
     return detect_horizontal
 
 
-def get_vertical_lines(img):
+def get_vertical_lines(img, thickness=20, threshold = 0):
     """
     Finds most prominent vertical lines
     @param img: input image
@@ -110,10 +110,10 @@ def get_vertical_lines(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # remove noise
-    thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+    thresh = cv2.threshold(gray, threshold, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
 
     # The kernel size affects the minimum thickness a line should have to be detected.
-    vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 20))
+    vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, thickness))
     detect_vertical = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, vertical_kernel, iterations=2)
 
     return detect_vertical

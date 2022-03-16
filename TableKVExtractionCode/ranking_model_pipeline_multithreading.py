@@ -1,8 +1,9 @@
 import cv2
 import torch
-from TableKVExtractionCode import utils, ranking_model_more
-from TableKVExtractionCode import vectorization
-from TableKVExtractionCode import table_cell_extraction
+import utils, ranking_model_more, vectorization, table_cell_extraction
+# from TableKVExtractionCode import utils, ranking_model_more
+# from TableKVExtractionCode import vectorization
+# from TableKVExtractionCode import table_cell_extraction
 import numpy as np
 import torch.nn as nn
 import torch.optim as optim
